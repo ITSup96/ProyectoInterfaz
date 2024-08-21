@@ -605,15 +605,15 @@ public class Calculadora extends javax.swing.JFrame {
             {
                 add();
             }
-            if(symbol == '-')
+        if(symbol == '-')
             {
                 subtract();
             }
-            if(symbol == '*')
+        if(symbol == '*')
             {
                 multiply();
             }
-            if(symbol == '/')
+        if(symbol == '/')
             {
                 divide();
             }
@@ -680,12 +680,12 @@ public class Calculadora extends javax.swing.JFrame {
         btnOne.setEnabled(true);
         btnTwo.setEnabled(true);
         btnThree.setEnabled(true);
-        btnFour.setEnabled(false);
+        btnFour.setEnabled(true);
         btnFive.setEnabled(true);
         btnSix.setEnabled(true);
         btnSeven.setEnabled(true);
         btnEight.setEnabled(true);
-        btnNine.setEnabled(false);
+        btnNine.setEnabled(true);
     }
         
     /**
