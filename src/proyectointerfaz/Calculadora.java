@@ -5,6 +5,7 @@
 package proyectointerfaz;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 
 /**
@@ -409,144 +410,110 @@ public class Calculadora extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+ 
+    //***VARIABLES***
+    
+        double a; //Utilizado para almacenar el primer numero.
+        double b; //Utilizado para almacenar el segundo numero.
+        char symbol; //Utilizado para guardar y determinar la operacion a realizar.
+        String resultado; //Guarda el resultado final de la operacion en texto.
+        boolean writingFirstDigit = true; //Marca si estamos escribiendo el primer digito de un numero;
+        boolean firstEqualsClick = true; //Marca si estamos relizando la primera vuelta por el boton igual.
+        boolean keysDisabled = false; //Marca si las teclas numericas estan desabilitdas.
+   
+        
+    //***EVENTS***
+    
     private void txtScreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtScreenActionPerformed
-        // TODO add your handling code here:
         txtScreen.requestFocus();
     }//GEN-LAST:event_txtScreenActionPerformed
 
     private void btnZeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZeroActionPerformed
-        // TODO add your handling code here:
         write("0");
     }//GEN-LAST:event_btnZeroActionPerformed
 
     private void btnOneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOneActionPerformed
-        // TODO add your handling code here:
         write("1");
     }//GEN-LAST:event_btnOneActionPerformed
 
     private void btnTwoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTwoActionPerformed
-        // TODO add your handling code here:
         write("2");
     }//GEN-LAST:event_btnTwoActionPerformed
 
     private void btnThreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThreeActionPerformed
-        // TODO add your handling code here:
         write("3");
     }//GEN-LAST:event_btnThreeActionPerformed
 
     private void btnFourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFourActionPerformed
-        // TODO add your handling code here:
         write("4");
     }//GEN-LAST:event_btnFourActionPerformed
 
     private void btnFiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiveActionPerformed
-        // TODO add your handling code here:
         write("5");
     }//GEN-LAST:event_btnFiveActionPerformed
 
     private void btnSixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSixActionPerformed
-        // TODO add your handling code here:
         write("6");
     }//GEN-LAST:event_btnSixActionPerformed
 
     private void btnSevenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSevenActionPerformed
-        // TODO add your handling code here:
         write("7");
     }//GEN-LAST:event_btnSevenActionPerformed
 
     private void btnEightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEightActionPerformed
-        // TODO add your handling code here:
         write("8");
     }//GEN-LAST:event_btnEightActionPerformed
 
     private void btnNineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNineActionPerformed
-        // TODO add your handling code here:
         write("9");
     }//GEN-LAST:event_btnNineActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        // TODO add your handling code here:
         clearScreen();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
         this.getContentPane().setBackground(this.getBackground());
         txtScreen.setText("0");
     }//GEN-LAST:event_formWindowOpened
 
-    
-    
-    
-    
-        double a;
-        double b;
-        char symbol;
-        String resultado;
-        boolean writingFirstDigit = true;
-        boolean firstEqualsClick = true;
-    
-    
     private void btnAdditionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdditionActionPerformed
-        // TODO add your handling code here:    
-        setVarA();
-        symbol = '+';
-        writingFirstDigit = true;
-        firstEqualsClick = true;
+        setSymbol('+');
     }//GEN-LAST:event_btnAdditionActionPerformed
 
     private void btnSubstractionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubstractionActionPerformed
-        // TODO add your handling code here:  
-        setVarA();
-        symbol = '-';
-        writingFirstDigit = true;
-        firstEqualsClick = true;
+        setSymbol('-');
     }//GEN-LAST:event_btnSubstractionActionPerformed
 
     private void btnMultiplicationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiplicationActionPerformed
-        // TODO add your handling code here:
-        setVarA();
-        symbol = '*';
-        writingFirstDigit = true;
-        firstEqualsClick = true;
+        setSymbol('*');
     }//GEN-LAST:event_btnMultiplicationActionPerformed
 
     private void btnDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDivisionActionPerformed
-        // TODO add your handling code here:
-        setVarA();
-        symbol = '/';
-        writingFirstDigit = true;
-        firstEqualsClick = true;
+        setSymbol('/');
     }//GEN-LAST:event_btnDivisionActionPerformed
 
     private void btnEqualsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEqualsActionPerformed
-        // TODO add your handling code here:
         
         if(firstEqualsClick)
         {
             setVarB();
             selectOperation();
-            
-            double lastResult = Double.parseDouble(resultado);
-            txtScreen.setText(resultado);
-            a = lastResult;
-            
             firstEqualsClick = false;
         }
         else
         {   
             selectOperation();
-            
-            double lastResult = Double.parseDouble(resultado);
-            txtScreen.setText(resultado);
-            a = lastResult;
         }
         
+        double lastResult = Double.parseDouble(resultado);
+        txtScreen.setText(resultado);
+        adjustSize();
+        a = lastResult;    
         writingFirstDigit = true;
     }//GEN-LAST:event_btnEqualsActionPerformed
 
     private void btnPointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPointActionPerformed
-        // TODO add your handling code here:
         String text = txtScreen.getText();
         
         if (!text.contains(".")) 
@@ -556,34 +523,34 @@ public class Calculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPointActionPerformed
 
     private void btnPercentageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPercentageActionPerformed
-        // TODO add your handling code here:
         double value = Double.parseDouble(txtScreen.getText());
         txtScreen.setText(Double.toString(value / 100));
     }//GEN-LAST:event_btnPercentageActionPerformed
 
     private void btnSignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignActionPerformed
-        // TODO add your handling code here:
         double value = Double.parseDouble(txtScreen.getText());
         txtScreen.setText(Double.toString(value * -1));
     }//GEN-LAST:event_btnSignActionPerformed
 
     
-    public void add()
+    //***METHODS***
+    
+    public void add() //Method used for addition.
     {
         resultado = Double.toString(a+b);
     }
     
-     public  void subtract()
+    public  void subtract() //Method used for subtraction.
     {
         resultado = Double.toString(a-b);
     }
-     
-      public void multiply()
+    
+    public void multiply() //Method used for multiplication.
     {
         resultado = Double.toString(a*b);
     }
-      
-       public void divide() //***NOTE: NEEDS RESTRICTION FOR DENOMINATOR =|= 0***
+    
+    public void divide() //Method used for division. ***NOTE: NEEDS RESTRICTION FOR DENOMINATOR =|= 0***
     {   
         if(b==0)
         {
@@ -595,7 +562,7 @@ public class Calculadora extends javax.swing.JFrame {
         }
     }
     
-    public void clearScreen() // Clears the calculator screen.
+    public void clearScreen() // Clears the calculator screen and sets all values back to default.
     {
         txtScreen.setText("0");
         a=0;
@@ -604,36 +571,35 @@ public class Calculadora extends javax.swing.JFrame {
         firstEqualsClick = true;
         resultado = "0";
         symbol = '\0';
-        
+        enableKeys();
     }
     
-    private void setVarA() //Saves number in screen into variable A.
+    public void setVarA() //Saves number in screen into variable A, resets boolean values.
     {
         a = Double.parseDouble(txtScreen.getText());
+        writingFirstDigit = true;
+        firstEqualsClick = true;
     }
     
-    private void setVarB() //Saves number in screen into variable B.
+    public void setVarB() //Saves number in screen into variable B.
     {
         b = Double.parseDouble(txtScreen.getText());
     }
     
-    public void write(String value)//Writes the value from the argument in the screen.
+    public void setSymbol(char sign)//Method to reduce repetion of instructions for each operation symbol
     {
-        String text = txtScreen.getText();
-        
-        if (writingFirstDigit) 
+        if (keysDisabled)
         {
-            txtScreen.setText(value);
-            writingFirstDigit = false;
+            enableKeys();
         }
         else
         {
-            txtScreen.setText(text + value);
+            setVarA();
         }
-    
+        symbol = sign;
     }
     
-    public void selectOperation()
+    public void selectOperation() //Sets the operation that will be performed based on the symbol
     {
         if(symbol == '+')
             {
@@ -653,12 +619,75 @@ public class Calculadora extends javax.swing.JFrame {
             }
     }
     
+    public void write(String value)//Writes the value set in the argument into the screen.
+    {
+        txtScreen.setFont(new Font("Helvetica Neue", Font.PLAIN, 36));
+        String text = txtScreen.getText();
+        
+        if (writingFirstDigit) 
+        {
+            txtScreen.setText(value);
+            writingFirstDigit = false;
+        }
+        else
+        {
+            txtScreen.setText(text + value);
+        }
+        adjustSize();
+    }
     
-
+    public void adjustSize()//Adjusts the font size when typing long numbers;
+    {
+        int textLength = txtScreen.getText().length();
+        int max = 36;
+        int min = 12;
+        int size = max;
+        
+        if (textLength > 10)
+        {
+            size = Math.max(min, max - (textLength - 10));
+        }
+        
+        txtScreen.setFont(new java.awt.Font("Helvetica Neue", Font.PLAIN, size));
+        
+        if (textLength > 40)
+        {
+            setVarA();
+            txtScreen.setText("0");
+            disableKeys();
+            keysDisabled = true;
+            writingFirstDigit = true;
+        }
+    }
     
+    public void disableKeys() //Disables keys. Used to limit the amount of character input.
+    {
+        btnZero.setEnabled(false);
+        btnOne.setEnabled(false);
+        btnTwo.setEnabled(false);
+        btnThree.setEnabled(false);
+        btnFour.setEnabled(false);
+        btnFive.setEnabled(false);
+        btnSix.setEnabled(false);
+        btnSeven.setEnabled(false);
+        btnEight.setEnabled(false);
+        btnNine.setEnabled(false);
+    }
     
-    
-    
+    public void enableKeys() //Enables keys.
+    {
+        btnZero.setEnabled(true);
+        btnOne.setEnabled(true);
+        btnTwo.setEnabled(true);
+        btnThree.setEnabled(true);
+        btnFour.setEnabled(false);
+        btnFive.setEnabled(true);
+        btnSix.setEnabled(true);
+        btnSeven.setEnabled(true);
+        btnEight.setEnabled(true);
+        btnNine.setEnabled(false);
+    }
+        
     /**
      * @param args the command line arguments
      */
