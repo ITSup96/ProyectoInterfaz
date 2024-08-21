@@ -411,6 +411,9 @@ public class Calculadora extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
  
+    //https://github.com/ITSup96/ProyectoInterfaz.git
+    
+    
     //***VARIABLES***
     
         double a; //Utilizado para almacenar el primer numero.
@@ -511,6 +514,7 @@ public class Calculadora extends javax.swing.JFrame {
         adjustSize();
         a = lastResult;    
         writingFirstDigit = true;
+        enableKeys();
     }//GEN-LAST:event_btnEqualsActionPerformed
 
     private void btnPointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPointActionPerformed
